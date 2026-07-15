@@ -1,0 +1,73 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "SimSIM",
+  "theme": "almond",
+  "colors": {
+    "primary": "#042ced"
+  },
+  "logo": {
+    "light": "https://media.brand.dev/bf8dfd7f-8d25-4b4f-b63a-ca220b00bc6f.png",
+    "dark": "https://media.brand.dev/bf8dfd7f-8d25-4b4f-b63a-ca220b00bc6f.png"
+  },
+  "favicon": "https://media.brand.dev/1750eac6-4c07-40fd-8019-17a4acfa6cee.png",
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Get SimSIM",
+      "href": "https://simsimglobal.com"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guide",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "how-it-works",
+              "device-compatibility"
+            ]
+          },
+          {
+            "group": "Using SimSIM",
+            "pages": [
+              "buying-a-plan",
+              "activating-your-esim",
+              "topping-up",
+              "managing-data"
+            ]
+          },
+          {
+            "group": "Coverage",
+            "pages": [
+              "coverage-overview",
+              "regional-plans"
+            ]
+          },
+          {
+            "group": "Account & Rewards",
+            "pages": [
+              "account-management",
+              "simsim-coins",
+              "referrals"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "faq",
+              "troubleshooting",
+              "cancellations-refunds",
+              "privacy-and-terms"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "socials": {}
+  }
+}

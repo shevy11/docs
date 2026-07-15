@@ -1,0 +1,77 @@
+{
+  "projectType": "saas",
+  "projectName": "SimSIM",
+  "projectDescription": "SimSIM is a travel eSIM service that lets you instantly connect to mobile data in 200+ countries — no SIM swap, no roaming surprises.",
+  "theme": "almond",
+  "primaryColor": "#042ced",
+  "lightColor": null,
+  "darkColor": null,
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guide",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "how-it-works",
+              "device-compatibility"
+            ]
+          },
+          {
+            "group": "Using SimSIM",
+            "pages": [
+              "buying-a-plan",
+              "activating-your-esim",
+              "topping-up",
+              "managing-data"
+            ]
+          },
+          {
+            "group": "Coverage",
+            "pages": [
+              "coverage-overview",
+              "regional-plans"
+            ]
+          },
+          {
+            "group": "Account & Rewards",
+            "pages": [
+              "account-management",
+              "simsim-coins",
+              "referrals"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "faq",
+              "troubleshooting",
+              "cancellations-refunds",
+              "privacy-and-terms"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Instant eSIM activation in 200+ countries",
+    "No physical SIM swap required",
+    "Keep your regular number while using SimSIM for data",
+    "Pay upfront with one clear price — no roaming surprises",
+    "Top up in two taps mid-trip",
+    "Low-data alerts before you run out",
+    "Regional plans for multi-country trips",
+    "SimSIM Coins loyalty cashback program",
+    "Referral bonuses for sharing with friends"
+  ],
+  "publicApiSurface": [
+    "eSIM QR code delivery via email",
+    "In-app data top-up",
+    "SimSIM Coins redemption (minimum 15 coins)",
+    "Account deletion via app (Profile → Account → Delete Account)",
+    "Customer support: support@simsimglobal.com"
+  ]
+}
