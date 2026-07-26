@@ -18,49 +18,103 @@
     }
   },
   "navigation": {
-    "tabs": [
+    "languages": [
       {
-        "tab": "Guide",
+        "language": "en",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Get started",
             "pages": [
-              "introduction",
-              "how-it-works",
-              "device-compatibility"
+              "en/introduction",
+              "en/how-it-works",
+              "en/device-compatibility"
             ]
           },
           {
             "group": "Using SimSIM",
             "pages": [
-              "buying-a-plan",
-              "activating-your-esim",
-              "topping-up",
-              "managing-data"
+              "en/buying-a-plan",
+              "en/activating-your-esim",
+              "en/managing-your-esim",
+              "en/topping-up",
+              "en/managing-data",
+              "en/notifications"
             ]
           },
           {
             "group": "Coverage",
             "pages": [
-              "coverage-overview",
-              "regional-plans"
+              "en/coverage-overview",
+              "en/regional-plans"
             ]
           },
           {
-            "group": "Account & Rewards",
+            "group": "Account & rewards",
             "pages": [
-              "account-management",
-              "simsim-coins",
-              "referrals"
+              "en/account-management",
+              "en/language-currency-appearance",
+              "en/payment-methods",
+              "en/simsim-coins",
+              "en/referrals"
             ]
           },
           {
             "group": "Help",
             "pages": [
-              "faq",
-              "troubleshooting",
-              "cancellations-refunds",
-              "privacy-and-terms"
+              "en/faq",
+              "en/troubleshooting",
+              "en/cancellations-refunds",
+              "en/privacy-and-terms"
+            ]
+          }
+        ]
+      },
+      {
+        "language": "he",
+        "groups": [
+          {
+            "group": "תחילת העבודה",
+            "pages": [
+              "he/introduction",
+              "he/how-it-works",
+              "he/device-compatibility"
+            ]
+          },
+          {
+            "group": "שימוש ב‑SimSIM",
+            "pages": [
+              "he/buying-a-plan",
+              "he/activating-your-esim",
+              "he/managing-your-esim",
+              "he/topping-up",
+              "he/managing-data",
+              "he/notifications"
+            ]
+          },
+          {
+            "group": "כיסוי",
+            "pages": [
+              "he/coverage-overview",
+              "he/regional-plans"
+            ]
+          },
+          {
+            "group": "חשבון ותגמולים",
+            "pages": [
+              "he/account-management",
+              "he/language-currency-appearance",
+              "he/payment-methods",
+              "he/simsim-coins",
+              "he/referrals"
+            ]
+          },
+          {
+            "group": "עזרה",
+            "pages": [
+              "he/faq",
+              "he/troubleshooting",
+              "he/cancellations-refunds",
+              "he/privacy-and-terms"
             ]
           }
         ]
@@ -69,5 +123,87 @@
   },
   "footer": {
     "socials": {}
-  }
+  },
+  "redirects": [
+    {
+      "source": "/introduction",
+      "destination": "/en/introduction",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works",
+      "destination": "/en/how-it-works",
+      "permanent": true
+    },
+    {
+      "source": "/device-compatibility",
+      "destination": "/en/device-compatibility",
+      "permanent": true
+    },
+    {
+      "source": "/buying-a-plan",
+      "destination": "/en/buying-a-plan",
+      "permanent": true
+    },
+    {
+      "source": "/activating-your-esim",
+      "destination": "/en/activating-your-esim",
+      "permanent": true
+    },
+    {
+      "source": "/topping-up",
+      "destination": "/en/topping-up",
+      "permanent": true
+    },
+    {
+      "source": "/managing-data",
+      "destination": "/en/managing-data",
+      "permanent": true
+    },
+    {
+      "source": "/coverage-overview",
+      "destination": "/en/coverage-overview",
+      "permanent": true
+    },
+    {
+      "source": "/regional-plans",
+      "destination": "/en/regional-plans",
+      "permanent": true
+    },
+    {
+      "source": "/account-management",
+      "destination": "/en/account-management",
+      "permanent": true
+    },
+    {
+      "source": "/simsim-coins",
+      "destination": "/en/simsim-coins",
+      "permanent": true
+    },
+    {
+      "source": "/referrals",
+      "destination": "/en/referrals",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/en/faq",
+      "permanent": true
+    },
+    {
+      "source": "/troubleshooting",
+      "destination": "/en/troubleshooting",
+      "permanent": true
+    },
+    {
+      "source": "/cancellations-refunds",
+      "destination": "/en/cancellations-refunds",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-and-terms",
+      "destination": "/en/privacy-and-terms",
+      "permanent": true
+    }
+  ]
 }
