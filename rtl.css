@@ -1,0 +1,20 @@
+html[dir="rtl"] #body-content,
+html[dir="rtl"] #content-area,
+html[dir="rtl"] #content,
+html[dir="rtl"] #sidebar,
+html[dir="rtl"] #table-of-contents,
+html[dir="rtl"] #navbar,
+html[dir="rtl"] #mobile-nav {
+  direction: rtl;
+}
+
+html[dir="rtl"] #content,
+html[dir="rtl"] mdx-content {
+  text-align: right;
+}
+
+html[dir="rtl"] pre,
+html[dir="rtl"] code {
+  direction: ltr;
+  text-align: left;
+}
