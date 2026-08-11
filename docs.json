@@ -3,7 +3,9 @@
   "name": "SimSIM",
   "theme": "almond",
   "colors": {
-    "primary": "#042ced"
+    "primary": "#042ced",
+    "light": "#5b78ff",
+    "dark": "#042ced"
   },
   "logo": {
     "light": "https://media.brand.dev/bf8dfd7f-8d25-4b4f-b63a-ca220b00bc6f.png",
@@ -14,7 +16,7 @@
     "primary": {
       "type": "button",
       "label": "Get SimSIM",
-      "href": "https://simsimglobal.com"
+      "href": "https://simsimglobal.com/esim"
     }
   },
   "navigation": {
@@ -31,10 +33,17 @@
             ]
           },
           {
+            "group": "Installing your eSIM",
+            "pages": [
+              "en/activating-your-esim",
+              "en/install-esim-iphone",
+              "en/install-esim-android"
+            ]
+          },
+          {
             "group": "Using SimSIM",
             "pages": [
               "en/buying-a-plan",
-              "en/activating-your-esim",
               "en/managing-your-esim",
               "en/topping-up",
               "en/managing-data",
@@ -81,10 +90,17 @@
             ]
           },
           {
+            "group": "התקנת eSIM",
+            "pages": [
+              "he/activating-your-esim",
+              "he/install-esim-iphone",
+              "he/install-esim-android"
+            ]
+          },
+          {
             "group": "שימוש ב‑SimSIM",
             "pages": [
               "he/buying-a-plan",
-              "he/activating-your-esim",
               "he/managing-your-esim",
               "he/topping-up",
               "he/managing-data",

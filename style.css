@@ -1,0 +1,117 @@
+/*
+ * Custom styles for the SimSIM help center.
+ *
+ * ── Companion file ────────────────────────────────────────────────────────
+ * `custom.js` sets `dir="rtl"` / `lang="he"` on <html> for /he/ pages.
+ * Mintlify does NOT do this on its own — without that script every rule below
+ * is inert and the Hebrew pages render left-to-right. Do not delete it.
+ *
+ * Both files are inlined by Mintlify rather than served as separate assets, so
+ * they will not show up in `document.styleSheets` hrefs or `document.scripts`
+ * srcs. Absence there is not evidence they failed to load.
+ *
+ * ── Why everything is in @layer components ────────────────────────────────
+ * Mintlify runs Tailwind v4, which registers these cascade layers:
+ *     properties, theme, base, components, utilities
+ *
+ * The theme's layout utilities are `!important` inside `utilities`. For
+ * important declarations CSS *reverses* layer order — earlier layers win, and
+ * unlayered important ranks lowest of all. So an unlayered `!important` rule,
+ * even at id-level specificity, loses. Declaring into `components` (any layer
+ * before `utilities`) wins.
+ *
+ * ── Why logical properties ────────────────────────────────────────────────
+ * The theme positions with physical properties (`left`, `padding-left`,
+ * `margin-left`), which don't follow `dir="rtl"`. Setting both the
+ * inline-start and inline-end logical property covers both physical sides, so
+ * a single rule serves LTR and RTL identically — no `html[dir="rtl"]` scoping
+ * and no direction-specific values to keep in sync.
+ *
+ * Mintlify already sets `dir="rtl"` on <html> for /he/ pages, so text
+ * alignment, native list markers, and navbar/logo placement are handled.
+ */
+
+@layer components {
+  /* ── Sidebar ────────────────────────────────────────────────────────────
+     Pinned with `left-0` / `right-auto`, so it stayed on the left in RTL. */
+  @media (min-width: 1024px) {
+    #sidebar-content {
+      inset-inline-start: 0 !important;
+      inset-inline-end: auto !important;
+      padding-inline-start: 0.5rem !important;
+      padding-inline-end: 0 !important;
+    }
+
+    /* Content sits beside the sidebar; mirror its offset to match. */
+    #content-container {
+      margin-inline-start: 16.5rem !important;
+      margin-inline-end: 0 !important;
+    }
+  }
+
+  /* ── Bulleted lists ─────────────────────────────────────────────────────
+     Typography sets `list-style-type: none` and draws its own dot with an
+     absolutely-positioned ::before, so the marker and its clearance were both
+     stuck on the physical left in RTL. */
+  /* The theme cancels Typography's default list indent with a physical
+     `padding-left: 0`. In LTR that is the inline-start, so the indent goes
+     away; in RTL it lands on the inline-end and leaves 1.625em (26px) on the
+     start, pushing the whole list inward. Zero it logically instead. */
+  #content ul {
+    padding-inline-start: 0 !important;
+    padding-inline-end: 0 !important;
+  }
+
+  #content ul > li {
+    padding-inline-start: 2rem !important;
+    padding-inline-end: 0.375rem !important;
+  }
+
+  #content ul > li::before {
+    inset-inline-start: 8px !important;
+    inset-inline-end: auto !important;
+  }
+
+  /* Ordered lists need no fix: they use the native ::marker with
+     `list-style-type: decimal`, which already follows direction. */
+
+  /* ── Heading anchor links ───────────────────────────────────────────────
+     The hover "#" link is pulled out of the text flow with `-ml-10`. That
+     physical margin still pulls leftward in RTL, where the reversed flex order
+     puts the link at the right end — so it landed on top of the heading text.
+     Pull it toward the inline-start instead. */
+  #content-area :is(h1, h2, h3, h4) a[href^="#"] {
+    margin-inline-start: -2.5rem !important;
+    margin-inline-end: 0 !important;
+  }
+
+  /* ── <Steps> ────────────────────────────────────────────────────────────
+     The numbered marker sits on the inline-start edge but was cleared with a
+     physical `padding-left` on the body. In RTL the marker moved right while
+     the padding stayed left and, because the body is `overflow: hidden`,
+     Hebrew step titles were clipped mid-word. */
+  #content .steps {
+    margin-inline-start: 0.875rem !important;
+    margin-inline-end: 0 !important;
+  }
+
+  #content .step > div:nth-child(2) {
+    margin-inline-start: -13px !important;
+    margin-inline-end: 0 !important;
+  }
+
+  #content .step > div:last-child {
+    padding-inline-start: 2rem !important;
+    padding-inline-end: 1px !important;
+  }
+
+  /* ── Code ───────────────────────────────────────────────────────────────
+     Code and preformatted text always read left-to-right. */
+  html[dir="rtl"] pre,
+  html[dir="rtl"] code,
+  html[dir="rtl"] kbd,
+  html[dir="rtl"] samp {
+    direction: ltr;
+    text-align: left;
+  }
+}
