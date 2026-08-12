@@ -105,6 +105,37 @@
     padding-inline-end: 1px !important;
   }
 
+  /* ── Accordion (RTL) ───────────────────────────────────────────────────
+     The summary lays out [chevron][title] in a physical flex-row. In RTL the
+     row reverses (right→left), so the chevron lands on the right and the
+     physical text-left keeps the title text at the wrong edge. Reverse the
+     flex order explicitly and align the title to the inline-start. */
+  html[dir="rtl"] .accordion summary {
+    flex-direction: row-reverse !important;
+  }
+
+  html[dir="rtl"] .accordion summary > div.leading-tight {
+    text-align: right !important;
+  }
+
+  /* ── Pagination prev/next (RTL) ────────────────────────────────────────
+     In LTR: prev = [← arrow][label], next = [label][→ arrow].
+     In RTL the arrows must flip direction and swap sides.
+     The next label already has flex-row-reverse in LTR, so reset it to row;
+     the prev label has plain flex-row, so add row-reverse. */
+  html[dir="rtl"] [data-component-part="pagination-prev"] svg,
+  html[dir="rtl"] [data-component-part="pagination-next"] svg {
+    transform: scaleX(-1) !important;
+  }
+
+  html[dir="rtl"] .pagination-prev .flex {
+    flex-direction: row-reverse !important;
+  }
+
+  html[dir="rtl"] .pagination-next .flex {
+    flex-direction: row !important;
+  }
+
   /* ── Code ───────────────────────────────────────────────────────────────
      Code and preformatted text always read left-to-right. */
   html[dir="rtl"] pre,

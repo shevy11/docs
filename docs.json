@@ -37,7 +37,9 @@
             "pages": [
               "en/activating-your-esim",
               "en/install-esim-iphone",
-              "en/install-esim-android"
+              "en/install-esim-android",
+              "en/install-esim-qr",
+              "en/install-esim-manual"
             ]
           },
           {
@@ -94,7 +96,9 @@
             "pages": [
               "he/activating-your-esim",
               "he/install-esim-iphone",
-              "he/install-esim-android"
+              "he/install-esim-android",
+              "he/install-esim-qr",
+              "he/install-esim-manual"
             ]
           },
           {

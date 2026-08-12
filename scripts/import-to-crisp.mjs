@@ -60,14 +60,78 @@ function frontmatterValue(source, name) {
   return line?.[1]?.replace(/^['\"]|['\"]$/g, "") ?? "";
 }
 
+const helpCenterBaseUrl = "https://help.simsimglobal.com";
+
+function dedent(text) {
+  const lines = text.replace(/^\n+|\n+$/g, "").split("\n");
+  const indents = lines.filter((line) => line.trim()).map((line) => line.match(/^ */)[0].length);
+  const smallest = indents.length ? Math.min(...indents) : 0;
+  return lines.map((line) => line.slice(smallest)).join("\n").trim();
+}
+
+function decodeEntities(text) {
+  return text
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&");
+}
+
+// Crisp articles are plain Markdown. Mintlify components have no equivalent, so
+// anything left untranslated is published as raw JSX — which buries step and FAQ
+// text inside `title=` attributes. Every component used in the docs is mapped
+// below; add a case here before introducing a new one.
 function crispMarkdown(source) {
-  const body = source.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, "");
-  return body
-    .replace(/<(Tip|Note|Info|Warning|Check)>\s*([\s\S]*?)\s*<\/\1>/g, (_, kind, content) =>
-      `> **${kind}:** ${content.trim().replace(/\n/g, "\n> ")}`,
-    )
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
+  let body = source.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, "");
+
+  body = body.replace(/<(Tip|Note|Info|Warning|Check)>\s*([\s\S]*?)\s*<\/\1>/g, (_, kind, content) =>
+    `> **${kind}:** ${dedent(content).replace(/\n/g, "\n> ")}`,
+  );
+
+  // Crisp cannot embed iframes; link out to the video instead.
+  body = body.replace(/<iframe\b[^>]*src="https:\/\/www\.youtube\.com\/embed\/([\w-]+)"[\s\S]*?<\/iframe>/g,
+    (match, videoId) => {
+      const title = match.match(/title="([^"]*)"/);
+      return `▶ [${title ? decodeEntities(title[1]) : "צפייה בסרטון"}](https://www.youtube.com/watch?v=${videoId})`;
+    },
+  );
+  body = body.replace(/<iframe\b[\s\S]*?<\/iframe>/g, "");
+
+  body = body.replace(/<Steps>([\s\S]*?)<\/Steps>/g, (_, inner) => {
+    let index = 0;
+    return inner
+      .replace(/[ \t]*<Step\s+title="([^"]*)"\s*>([\s\S]*?)<\/Step>/g, (__, title, content) => {
+        index += 1;
+        return `**${index}. ${decodeEntities(title)}**\n\n${dedent(content)}\n`;
+      })
+      .trim();
+  });
+
+  body = body.replace(/[ \t]*<Accordion\s+title="([^"]*)"\s*>([\s\S]*?)<\/Accordion>/g,
+    (_, title, content) => `**${decodeEntities(title)}**\n\n${dedent(content)}\n`,
+  );
+  body = body.replace(/<\/?AccordionGroup>/g, "");
+
+  body = body.replace(/[ \t]*<Card\b([^>]*)>([\s\S]*?)<\/Card>/g, (_, attributes, content) => {
+    const title = attributes.match(/title="([^"]*)"/);
+    const href = attributes.match(/href="([^"]*)"/);
+    const label = title ? decodeEntities(title[1]) : "";
+    const summary = dedent(content).replace(/\n+/g, " ");
+    const link = href ? `[${label}](${href[1]})` : `**${label}**`;
+    return `- ${link}${summary ? ` — ${summary}` : ""}`;
+  });
+  body = body.replace(/<\/?CardGroup[^>]*>/g, "");
+
+  body = body.replace(/[ \t]*<Tab\s+title="([^"]*)"\s*>([\s\S]*?)<\/Tab>/g,
+    (_, title, content) => `### ${decodeEntities(title)}\n\n${dedent(content)}\n`,
+  );
+  body = body.replace(/<\/?Tabs>/g, "");
+
+  // Docs-relative links would resolve against the Crisp domain, so absolutise them.
+  body = body.replace(/\]\((\/(?:he|en)\/[^)]*)\)/g, `](${helpCenterBaseUrl}$1)`);
+
+  return decodeEntities(body).replace(/\n{3,}/g, "\n\n").trim();
 }
 
 function sleep(milliseconds) {
