@@ -140,7 +140,7 @@ function sleep(milliseconds) {
 
 function retryDelay(response, attempt) {
   const retryAfter = Number(response.headers.get("retry-after"));
-  if (Number.isFinite(retryAfter) && retryAfter >= 0) return retryAfter * 1_000;
+  if (Number.isFinite(retryAfter) && retryAfter > 0) return retryAfter * 1_000;
   return Math.min(60_000, 2_000 * 2 ** attempt);
 }
 
